@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Contact — Code Infinity IT Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-section {
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      padding-top: 1rem;
+    }
+
+    .contact-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(0, 212, 255, .07);
+      border: 1px solid rgba(0, 212, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: .875rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      font-size: .875rem;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: .75rem;
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form::before {
+      content: '∞';
+      font-family: 'Syne', sans-serif;
+      font-size: 16rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, .04);
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: .4rem;
+    }
+
+    .form-sub {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 5px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      background: rgba(0, 212, 255, .04);
+    }
+
+    select option {
+      background: var(--bg);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent), #0099cc);
+      color: #000;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+      margin-top: .5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-submit:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+
+    .form-submit.sent {
+      background: linear-gradient(135deg, var(--accent3), #1D9E75);
+    }
+
+    /* Map placeholder */
+    .map-section {
+      padding: 0 5% 5rem;
+    }
+
+    .map-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .map-placeholder {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-placeholder .map-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .map-placeholder h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+
+    .map-placeholder p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .map-placeholder a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .map-infinity {
+      position: absolute;
+      font-family: 'Syne', sans-serif;
+      font-size: 18rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, .04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: var(--bg2);
+      padding: 5rem 5%;
+    }
+
+    .faq-list {
+      max-width: 700px;
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .faq-q:hover {
+      color: var(--accent);
+    }
+
+    .faq-icon {
+      font-size: 1.2rem;
+      transition: transform .3s;
+      color: var(--accent);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease, padding .3s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 1.5rem 1.25rem;
+    }
+
+    .faq-a p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.75;
+    }
+
+    @media(max-width:900px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <canvas id="particles"></canvas>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-glow"></div>
+    <div style="position:relative;z-index:2">
+      <div class="page-hero-tag">∞ Get In Touch</div>
+      <h1>Let's Build <span class="grad">Something Great</span></h1>
+      <p>Tell us about your project. We'll respond within 24 hours with a tailored approach.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info reveal">
+      <div class="section-tag">Contact Us</div>
+      <div class="contact-headline">Infinite possibilities<br>start with a message.</div>
+      <div class="contact-sub">Whether you have a fully scoped project or just a rough idea, we'd love to hear from you.
+        Our team in Chennai is ready to partner with you on your next digital venture.</div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><strong>Our Office</strong><span>Velachery Chennai, Tamil Nadu, India — 600001</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div><strong>Email Us</strong><span>contact@codeinfinity.in</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><strong>Call Us</strong><span>+91 93610 41083</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div><strong>Working Hours</strong><span>Monday – Saturday, 9:00 AM – 6:00 PM IST</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⚡</div>
+          <div><strong>Response Time</strong><span>We typically reply within 4–6 business hours</span></div>
+        </div>
+      </div>
+      <div class="contact-socials">
+        <a href="https://www.linkedin.com/in/manikandandevelops/" class="social-btn" title="LinkedIn">in</a>
+        <a href="https://github.com/manikandanadev" class="social-btn" title="GitHub">gh</a>
+        <a href="#" class="social-btn" title="Twitter">tw</a>
+        <a href="https://www.instagram.com/manikandanarulraj?igsh=MTczdmliMzczOG55Yw==" class="social-btn"
+          title="Instagram">ig</a>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-title">Send Us a Message</div>
+      <div class="form-sub">Fill in your details and we'll be in touch shortly.</div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="Manikandan" /></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="lname" placeholder="A" /></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="email"
+          placeholder="you@company.com" /></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+91 98765 43210" />
+      </div>
+      <div class="form-group"><label>Company / Organisation</label><input type="text" id="company"
+          placeholder="Your Company Name" /></div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select id="service">
+          <option value="">Select a service...</option>
+          <option>Web Development</option>
+          <option>Mobile App Development</option>
+          <option>Cloud & DevOps</option>
+          <option>AI / Machine Learning</option>
+          <option>Cybersecurity</option>
+          <option>Data & Analytics</option>
+          <option>Full Product Build</option>
+          <option>Other / Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estimated Budget</label>
+        <select id="budget">
+          <option value="">Select budget range...</option>
+          <option>Under ₹50,000</option>
+          <option>₹50,000 – ₹1,50,000</option>
+          <option>₹1,50,000 – ₹5,00,000</option>
+          <option>₹5,00,000+</option>
+          <option>Let's discuss</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Project Details</label><textarea id="message"
+          placeholder="Tell us about your project — what you're building, your goals, timeline, and any specific requirements..."></textarea>
+      </div>
+      <button class="form-submit" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-wrap reveal">
+      <div class="map-infinity">∞</div>
+      <div class="map-placeholder">
+        <span class="map-icon">📍</span>
+        <h3>Code Infinity HQ</h3>
+        <p>Chennai, Tamil Nadu, India — 600001</p>
+        <br />
+        <a href="https://maps.app.goo.gl/fnGJW6fQYPaU71gK9" target="_blank">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div style="text-align:center" class="reveal">
+      <div class="section-tag" style="justify-content:center">∞ FAQs</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does a typical project take?<span
+            class="faq-icon">+</span></div>
+        <div class="faq-a">
+          <p>It depends on scope. A simple landing page takes 1–2 weeks. A full SaaS web app typically takes 8–16 weeks.
+            We'll give you an accurate timeline in your free consultation before we begin.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you work with startups or only enterprises?<span
+            class="faq-icon">+</span></div>
+        <div class="faq-a">
+          <p>Both! We love working with early-stage startups who need to move fast, and enterprises who need reliable,
+            scalable systems. Our team adapts to your stage and needs.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What is your development process?<span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>We follow an agile sprint model — Discovery → Design → Development → Testing → Deployment. You get weekly
+            demos and can provide feedback at every stage. No surprises, full transparency.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you provide post-launch support?<span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Absolutely. All our packages include at least 1 month of free post-launch support. We also offer ongoing
+            maintenance plans for teams who want us to manage their infrastructure long-term.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I see the code and own it after delivery?<span
+            class="faq-icon">+</span></div>
+        <div class="faq-a">
+          <p>Yes — 100% of the code we write for you is yours. We deliver full source code via GitHub and you retain
+            complete ownership. No lock-in, ever.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+  <script>renderNav(); renderFooter();</script>
+  <script src="js/main.js"></script>
+  <script>
+    function handleSubmit() {
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = '✓ Message Sent! We\'ll be in touch soon.';
+      btn.classList.add('sent');
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = 'Send Message →'; btn.classList.remove('sent'); btn.disabled = false; }, 4000);
+    }
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+
+</html>

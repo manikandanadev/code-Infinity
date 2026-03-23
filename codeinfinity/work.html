@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Work — Code Infinity IT Solutions</title>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+.filter-bar{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
+.filter-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:.5rem 1.25rem;border-radius:100px;font-size:.85rem;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;}
+.filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06);}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.work-card{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:pointer;position:relative;}
+.work-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.work-card.span2{grid-column:span 2;}
+.work-img-wrap{overflow:hidden;position:relative;}
+.work-img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s;filter:saturate(.75);}
+.work-card.span2 .work-img{height:300px;}
+.work-card:hover .work-img{transform:scale(1.06);}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(4,8,18,.95));opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1.5rem;}
+.work-card:hover .work-overlay{opacity:1;}
+.work-overlay-btn{color:var(--accent);font-size:.85rem;font-weight:600;border:1px solid var(--accent);border-radius:6px;padding:.4rem 1rem;}
+.work-info{padding:1.5rem;}
+.work-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;}
+.work-tag{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.work-year{font-size:.7rem;color:var(--muted);}
+.work-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:.4rem;}
+.work-desc{color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:1rem;}
+.work-tech{display:flex;flex-wrap:wrap;gap:.4rem;}
+.work-tech span{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:5px;padding:.15rem .5rem;font-size:.7rem;color:var(--muted);}
+/* Case study section */
+.case-study{background:var(--bg2);padding:5rem 5%;}
+.case-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:3rem;position:relative;overflow:hidden;}
+.case-infinity{position:absolute;font-family:'Syne',sans-serif;font-size:18rem;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(0,212,255,.04);top:50%;right:-5rem;transform:translateY(-50%);user-select:none;line-height:1;}
+.case-img{border-radius:14px;overflow:hidden;position:relative;}
+.case-img img{width:100%;height:320px;object-fit:cover;display:block;filter:saturate(.75);}
+.case-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.08));border-radius:14px;}
+.case-tag{font-size:.75rem;font-weight:600;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem;}
+.case-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:1rem;line-height:1.2;}
+.case-desc{color:var(--muted);font-size:.9rem;line-height:1.8;margin-bottom:1.5rem;}
+.case-results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.case-result{text-align:center;padding:.75rem;background:rgba(0,212,255,.05);border:1px solid var(--border);border-radius:10px;}
+.case-result-num{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--accent3);}
+.case-result-label{font-size:.7rem;color:var(--muted);margin-top:2px;}
+@media(max-width:900px){.portfolio-grid{grid-template-columns:1fr;}.work-card.span2{grid-column:span 1;}.case-inner{grid-template-columns:1fr;}.case-infinity{display:none;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="particles"></canvas>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-glow"></div>
+  <div style="position:relative;z-index:2">
+    <div class="page-hero-tag">∞ Our Portfolio</div>
+    <h1>Work That <span class="grad">Speaks</span></h1>
+    <p>150+ projects delivered across industries. Here are some of our finest digital creations.</p>
+  </div>
+</div>
+
+<section>
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filterWork(this,'all')">All Projects</button>
+    <button class="filter-btn" onclick="filterWork(this,'web')">Web Apps</button>
+    <button class="filter-btn" onclick="filterWork(this,'mobile')">Mobile</button>
+    <button class="filter-btn" onclick="filterWork(this,'ai')">AI / ML</button>
+    <button class="filter-btn" onclick="filterWork(this,'cloud')">Cloud</button>
+    <button class="filter-btn" onclick="filterWork(this,'design')">Design</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+    <div class="work-card span2 reveal" data-cat="web">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="FinTrack"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View Case Study →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Web · SaaS</span><span style="color:var(--muted)">·</span><span class="work-year">2024</span></div>
+        <div class="work-name">FinTrack Analytics Platform</div>
+        <div class="work-desc">Real-time financial dashboard with AI-powered insights, serving 10,000+ daily active users across India.</div>
+        <div class="work-tech"><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>AWS</span><span>Chart.js</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="mobile">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80" alt="SwiftDeliver"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Mobile · Logistics</span><span style="color:var(--muted)">·</span><span class="work-year">2024</span></div>
+        <div class="work-name">SwiftDeliver App</div>
+        <div class="work-desc">Last-mile logistics app with GPS tracking, 50k+ downloads, 4.8★ rating.</div>
+        <div class="work-tech"><span>React Native</span><span>Firebase</span><span>Maps API</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="ai">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="SmartSupport"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">AI · NLP</span><span style="color:var(--muted)">·</span><span class="work-year">2024</span></div>
+        <div class="work-name">SmartSupport AI</div>
+        <div class="work-desc">GPT-powered customer support bot reducing ticket volume by 60%.</div>
+        <div class="work-tech"><span>Python</span><span>OpenAI</span><span>LangChain</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="web">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80" alt="LuxeShop"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Web · E-commerce</span><span style="color:var(--muted)">·</span><span class="work-year">2023</span></div>
+        <div class="work-name">LuxeShop Platform</div>
+        <div class="work-desc">Headless commerce platform with 3D product views and AR try-on.</div>
+        <div class="work-tech"><span>Next.js</span><span>Three.js</span><span>Shopify</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="cloud">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="CloudBase"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Cloud · DevOps</span><span style="color:var(--muted)">·</span><span class="work-year">2023</span></div>
+        <div class="work-name">CloudBase Infrastructure</div>
+        <div class="work-desc">Full cloud migration and Kubernetes orchestration for a 200-employee fintech firm.</div>
+        <div class="work-tech"><span>AWS</span><span>K8s</span><span>Terraform</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="mobile">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80" alt="MediSync"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Mobile · HealthTech</span><span style="color:var(--muted)">·</span><span class="work-year">2023</span></div>
+        <div class="work-name">MediSync App</div>
+        <div class="work-desc">Patient management and telemedicine platform for 500+ doctors.</div>
+        <div class="work-tech"><span>Flutter</span><span>FastAPI</span><span>PostgreSQL</span></div>
+      </div>
+    </div>
+
+    <div class="work-card span2 reveal" data-cat="design">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80" alt="BrandOS"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View Case Study →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Design · Branding</span><span style="color:var(--muted)">·</span><span class="work-year">2023</span></div>
+        <div class="work-name">BrandOS Design System</div>
+        <div class="work-desc">Full design system, component library and brand identity for a Series B startup — 120+ reusable components.</div>
+        <div class="work-tech"><span>Figma</span><span>React</span><span>Storybook</span><span>CSS Variables</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="ai">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80" alt="VisionAI"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">AI · Computer Vision</span><span style="color:var(--muted)">·</span><span class="work-year">2022</span></div>
+        <div class="work-name">VisionAI Quality Control</div>
+        <div class="work-desc">Computer vision defect detection for a manufacturing plant, 98.5% accuracy.</div>
+        <div class="work-tech"><span>Python</span><span>TensorFlow</span><span>OpenCV</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal" data-cat="web">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="EduPlatform"/>
+        <div class="work-overlay"><span class="work-overlay-btn">View →</span></div>
+      </div>
+      <div class="work-info">
+        <div class="work-meta"><span class="work-tag">Web · EdTech</span><span style="color:var(--muted)">·</span><span class="work-year">2022</span></div>
+        <div class="work-name">EduPlatform LMS</div>
+        <div class="work-desc">Learning management system for 20,000+ students with live classrooms and AI-generated quizzes.</div>
+        <div class="work-tech"><span>Next.js</span><span>WebRTC</span><span>MongoDB</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<div class="case-study">
+  <div style="text-align:center;margin-bottom:3rem" class="reveal">
+    <div class="section-tag" style="justify-content:center">∞ Featured Case Study</div>
+    <h2 class="section-title">How We Built FinTrack<br>From 0 to 10,000 Users</h2>
+  </div>
+  <div class="case-inner reveal">
+    <div class="case-infinity">∞</div>
+    <div class="case-img">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80" alt="FinTrack case study"/>
+      <div class="case-img-overlay"></div>
+    </div>
+    <div style="position:relative;z-index:2">
+      <div class="case-tag">Web · SaaS · AI · 2024</div>
+      <div class="case-title">FinTrack Analytics Platform</div>
+      <div class="case-desc">A Chennai-based fintech startup approached us to build a real-time financial analytics platform from scratch. We delivered in 12 weeks — complete with AI-powered anomaly detection, real-time dashboards, and enterprise-grade security.</div>
+      <div class="case-results">
+        <div class="case-result"><div class="case-result-num">12 wks</div><div class="case-result-label">Delivery Time</div></div>
+        <div class="case-result"><div class="case-result-num">10k+</div><div class="case-result-label">Daily Users</div></div>
+        <div class="case-result"><div class="case-result-num">99.9%</div><div class="case-result-label">Uptime</div></div>
+      </div>
+      <a href="contact.html" class="btn-primary">Start a Similar Project</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script>renderNav(); renderFooter();</script>
+<script src="js/main.js"></script>
+<script>
+function filterWork(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.work-card').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.style.transition = 'opacity .3s, transform .3s';
+    card.style.opacity = show ? '1' : '0.15';
+    card.style.transform = show ? '' : 'scale(.97)';
+    card.style.pointerEvents = show ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

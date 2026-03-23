@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Services — Code Infinity IT Solutions</title>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+.services-full{display:grid;gap:5rem;margin-top:4rem;}
+.service-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.service-row.reverse{direction:rtl;}
+.service-row.reverse > *{direction:ltr;}
+.service-big-icon{font-size:5rem;margin-bottom:1.5rem;display:block;}
+.service-detail-tag{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem;}
+.service-detail h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;margin-bottom:1rem;line-height:1.2;}
+.service-detail p{color:var(--muted);line-height:1.8;margin-bottom:1.5rem;font-size:.95rem;}
+.service-features{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;}
+.service-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text);}
+.service-features li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.service-visual{position:relative;border-radius:20px;overflow:hidden;}
+.service-visual img{width:100%;height:380px;object-fit:cover;display:block;filter:saturate(.75);}
+.service-visual-overlay{position:absolute;inset:0;border-radius:20px;}
+.service-visual-border{position:absolute;inset:0;border:1px solid var(--border);border-radius:20px;pointer-events:none;}
+.service-badge{position:absolute;top:1.5rem;left:1.5rem;background:rgba(4,8,18,.85);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:.8rem;font-weight:600;}
+.service-badge span{color:var(--accent);}
+/* Pricing */
+#pricing{background:var(--bg2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.pricing-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;transition:transform .3s,border-color .3s,box-shadow .3s;}
+.pricing-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.pricing-card.featured{border-color:rgba(0,212,255,.4);position:relative;}
+.pricing-card.featured::before{content:'Most Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.7rem;font-weight:700;padding:.3rem 1rem;border-radius:100px;letter-spacing:.05em;}
+.price-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.price-amount{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--accent);margin-bottom:.25rem;}
+.price-period{font-size:.8rem;color:var(--muted);}
+.price-divider{height:1px;background:var(--border);margin:1.5rem 0;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;}
+.price-features li{font-size:.875rem;color:var(--muted);display:flex;gap:8px;align-items:center;}
+.price-features li.yes{color:var(--text);}
+.price-features li.yes::before{content:'✓';color:var(--accent3);font-weight:600;}
+.price-features li.no::before{content:'✕';color:var(--muted);}
+@media(max-width:900px){.service-row,.service-row.reverse{grid-template-columns:1fr;direction:ltr;}.pricing-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="particles"></canvas>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-glow"></div>
+  <div style="position:relative;z-index:2">
+    <div class="page-hero-tag">∞ What We Offer</div>
+    <h1>Our <span class="grad">Services</span></h1>
+    <p>End-to-end technology solutions crafted to turn your vision into a world-class digital product.</p>
+  </div>
+</div>
+
+<section>
+  <div class="services-full">
+
+    <div class="service-row reveal">
+      <div class="service-detail">
+        <div class="service-detail-tag" style="color:var(--accent)">01 — Web Development</div>
+        <span class="service-big-icon">🌐</span>
+        <h2>Full-Stack Web<br>Applications</h2>
+        <p>We build powerful, scalable web applications using the latest technologies. From SaaS platforms to enterprise portals, our code is clean, tested, and built to last.</p>
+        <ul class="service-features">
+          <li>React, Next.js & Vue.js frontends</li>
+          <li>Node.js, Python & Go backends</li>
+          <li>REST & GraphQL API design</li>
+          <li>Progressive Web Apps (PWA)</li>
+          <li>Performance optimization & SEO</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Start a Web Project</a>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80" alt="Web development"/>
+        <div class="service-visual-overlay" style="background:linear-gradient(135deg,rgba(0,212,255,.12),transparent)"></div>
+        <div class="service-visual-border"></div>
+        <div class="service-badge">Stack: <span>React · Node · PostgreSQL</span></div>
+      </div>
+    </div>
+
+    <div class="infinity-divider"><svg viewBox="0 0 100 50" fill="none"><path d="M10 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S10 33 10 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M62 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S62 33 62 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M24 25h52" stroke="#00d4ff" stroke-width="1.5"/></svg></div>
+
+    <div class="service-row reverse reveal">
+      <div class="service-detail">
+        <div class="service-detail-tag" style="color:#a78bfa">02 — Mobile Apps</div>
+        <span class="service-big-icon">📱</span>
+        <h2>iOS & Android<br>Mobile Apps</h2>
+        <p>We craft high-performance mobile applications using React Native and Flutter. Native-quality experience from a single codebase, shipped faster and more cost-effectively.</p>
+        <ul class="service-features">
+          <li>React Native & Flutter development</li>
+          <li>iOS & Android deployment</li>
+          <li>Offline-first architecture</li>
+          <li>App Store optimization</li>
+          <li>Push notifications & analytics</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Build Your App</a>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=80" alt="Mobile app"/>
+        <div class="service-visual-overlay" style="background:linear-gradient(135deg,rgba(124,58,237,.12),transparent)"></div>
+        <div class="service-visual-border"></div>
+        <div class="service-badge">Stack: <span>React Native · Flutter</span></div>
+      </div>
+    </div>
+
+    <div class="infinity-divider"><svg viewBox="0 0 100 50" fill="none"><path d="M10 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S10 33 10 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M62 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S62 33 62 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M24 25h52" stroke="#00d4ff" stroke-width="1.5"/></svg></div>
+
+    <div class="service-row reveal">
+      <div class="service-detail">
+        <div class="service-detail-tag" style="color:var(--accent3)">03 — Cloud & DevOps</div>
+        <span class="service-big-icon">☁️</span>
+        <h2>Cloud Infrastructure<br>& DevOps</h2>
+        <p>Modern cloud architecture that scales infinitely. We design, deploy and manage cloud infrastructure on AWS, Azure, and GCP — with automated CI/CD pipelines and zero-downtime deployments.</p>
+        <ul class="service-features">
+          <li>AWS, Azure & GCP setup</li>
+          <li>Docker & Kubernetes orchestration</li>
+          <li>CI/CD pipeline automation</li>
+          <li>Infrastructure as Code (Terraform)</li>
+          <li>24/7 monitoring & alerting</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Scale My Infrastructure</a>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=80" alt="Cloud infrastructure"/>
+        <div class="service-visual-overlay" style="background:linear-gradient(135deg,rgba(6,255,165,.1),transparent)"></div>
+        <div class="service-visual-border"></div>
+        <div class="service-badge">Stack: <span>AWS · Docker · K8s</span></div>
+      </div>
+    </div>
+
+    <div class="infinity-divider"><svg viewBox="0 0 100 50" fill="none"><path d="M10 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S10 33 10 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M62 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S62 33 62 25z" stroke="#00d4ff" stroke-width="1.5"/><path d="M24 25h52" stroke="#00d4ff" stroke-width="1.5"/></svg></div>
+
+    <div class="service-row reverse reveal">
+      <div class="service-detail">
+        <div class="service-detail-tag" style="color:#fbbf24">04 — AI & Machine Learning</div>
+        <span class="service-big-icon">🤖</span>
+        <h2>AI & ML<br>Integration</h2>
+        <p>We bring intelligence to your product. From LLM integrations and chatbots to custom ML models and computer vision — we make your software think.</p>
+        <ul class="service-features">
+          <li>LLM & GPT integrations</li>
+          <li>Custom ML model training</li>
+          <li>NLP & sentiment analysis</li>
+          <li>Computer vision solutions</li>
+          <li>Predictive analytics dashboards</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Add AI to My Product</a>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=700&q=80" alt="AI ML"/>
+        <div class="service-visual-overlay" style="background:linear-gradient(135deg,rgba(251,191,36,.1),transparent)"></div>
+        <div class="service-visual-border"></div>
+        <div class="service-badge">Stack: <span>Python · TensorFlow · OpenAI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag" style="justify-content:center">∞ Pricing</div>
+    <h2 class="section-title">Simple, Transparent Pricing</h2>
+    <p class="section-sub" style="margin:0 auto">No hidden fees. No surprises. Just results.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="price-name">Starter</div>
+      <div class="price-amount">₹49K</div>
+      <div class="price-period">one-time / small project</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="yes">Landing page or small web app</li>
+        <li class="yes">Mobile responsive design</li>
+        <li class="yes">Basic CMS integration</li>
+        <li class="yes">1 month free support</li>
+        <li class="no">Custom backend development</li>
+        <li class="no">Cloud deployment</li>
+      </ul>
+      <a href="contact.html" class="btn-ghost" style="width:100%;text-align:center">Get Started</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="price-name">Growth</div>
+      <div class="price-amount">₹1.5L</div>
+      <div class="price-period">one-time / full product</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="yes">Full-stack web or mobile app</li>
+        <li class="yes">Custom backend & database</li>
+        <li class="yes">API design & integration</li>
+        <li class="yes">Cloud deployment (AWS/GCP)</li>
+        <li class="yes">3 months free support</li>
+        <li class="no">AI/ML features</li>
+      </ul>
+      <a href="contact.html" class="btn-primary" style="width:100%;text-align:center">Choose Growth</a>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="price-name">Enterprise</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-period">tailored to your scope</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="yes">Everything in Growth</li>
+        <li class="yes">AI & ML integration</li>
+        <li class="yes">DevOps & CI/CD setup</li>
+        <li class="yes">Security audit</li>
+        <li class="yes">Dedicated project manager</li>
+        <li class="yes">12 months support SLA</li>
+      </ul>
+      <a href="contact.html" class="btn-ghost" style="width:100%;text-align:center">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script>renderNav(); renderFooter();</script>
+<script src="js/main.js"></script>
+</body>
+</html>

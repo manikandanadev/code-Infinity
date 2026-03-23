@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Code Infinity IT Solutions — Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 5%;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.14) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pglow 4s ease-in-out infinite;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.09) 0%, transparent 70%);
+      top: 28%;
+      right: 8%;
+      animation: pglow 5.5s ease-in-out infinite reverse;
+    }
+
+    @keyframes pglow {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.15);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 940px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      animation: fup 0.8s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent3);
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .hero-title .line span {
+      display: inline-block;
+      animation: sup 0.9s cubic-bezier(.16, 1, .3, 1) both;
+    }
+
+    .hero-title .line:nth-child(2) span {
+      animation-delay: .1s;
+    }
+
+    .hero-title .line:nth-child(3) span {
+      animation-delay: .2s;
+    }
+
+    @keyframes sup {
+      from {
+        transform: translateY(110%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fup {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      animation: fup .9s .3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fup .9s .45s ease both;
+    }
+
+    .hero-infinity {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(8rem, 22vw, 18rem);
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, 0.05);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 4rem;
+      animation: fup .9s .6s ease both;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: .05em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fup 1s 1s ease both;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--accent));
+      animation: sline 1.5s ease-in-out infinite;
+    }
+
+    @keyframes sline {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    /* Floating cards */
+    .tech-float {
+      position: absolute;
+      background: rgba(12, 21, 40, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .7rem 1rem;
+      font-size: .8rem;
+      backdrop-filter: blur(12px);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: float 4s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .tech-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Services preview */
+    #services-preview {
+      background: var(--bg2);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--card);
+      padding: 2.5rem;
+      transition: background .3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 212, 255, .05), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .service-card:hover {
+      background: #0f1e38;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      transition: transform .3s;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+
+    .service-desc {
+      color: var(--muted);
+      font-size: .875rem;
+      line-height: 1.7;
+    }
+
+    .service-arrow {
+      margin-top: 1.5rem;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .3s, transform .3s;
+    }
+
+    .service-card:hover .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Why us */
+    #why {
+      overflow: hidden;
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-visual {
+      position: relative;
+    }
+
+    .why-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      filter: saturate(.8);
+    }
+
+    .why-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 212, 255, .15), rgba(124, 58, 237, .1));
+      mix-blend-mode: overlay;
+      border-radius: 16px;
+    }
+
+    .why-card {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .why-card .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent3);
+    }
+
+    .why-card .lbl {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .why-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .why-item strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .why-item span {
+      color: var(--muted);
+      font-size: .875rem;
+    }
+
+    /* Marquee */
+    .marquee-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+    }
+
+    .marquee {
+      display: flex;
+      gap: 1.5rem;
+      animation: mq 22s linear infinite;
+      width: max-content;
+    }
+
+    .marquee2 {
+      animation-direction: reverse;
+      animation-duration: 28s;
+    }
+
+    .tech-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .6rem 1.2rem;
+      white-space: nowrap;
+      font-size: .875rem;
+      font-weight: 500;
+    }
+
+    @keyframes mq {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* CTA banner */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(0, 212, 255, .07), rgba(124, 58, 237, .07));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '∞';
+      font-family: 'Syne', sans-serif;
+      font-size: 20rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, .04);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      line-height: 1;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    @media(max-width:900px) {
+      .why-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <canvas id="particles"></canvas>
+  <div id="nav-placeholder"></div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-infinity">∞</div>
+
+    <div class="tech-float" style="top:22%;left:4%;animation-delay:0s">
+      <div class="tech-dot" style="background:#61dafb"></div>React.js
+    </div>
+    <div class="tech-float" style="top:58%;left:2%;animation-delay:1s">
+      <div class="tech-dot" style="background:#3ecf8e"></div>Node.js
+    </div>
+    <div class="tech-float" style="top:20%;right:4%;animation-delay:.5s">
+      <div class="tech-dot" style="background:#ff6b35"></div>Cloud Native
+    </div>
+    <div class="tech-float" style="bottom:26%;right:3%;animation-delay:1.5s">
+      <div class="tech-dot" style="background:#a855f7"></div>AI / ML
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Transforming Ideas into Digital Reality</div>
+      <h1 class="hero-title">
+        <span class="line"><span>We Build</span></span>
+        <span class="line"><span class="grad">Infinite Solutions</span></span>
+        <span class="line"><span>For Your Business</span></span>
+      </h1>
+      <p class="hero-sub">Code Infinity IT Solutions delivers cutting-edge web, mobile & cloud applications that scale.
+        From startups to enterprises — we code your future.</p>
+      <div class="hero-btns">
+        <a href="work.html" class="btn-primary">View Our Work</a>
+        <a href="contact.html" class="btn-ghost">Start a Project →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num" data-count="150">0</div>
+          <div class="stat-label">PROJECTS DELIVERED</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="80">0</div>
+          <div class="stat-label">HAPPY CLIENTS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-label">YEARS EXPERIENCE</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="99">0</div>
+          <div class="stat-label">% SATISFACTION</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll"><span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section id="services-preview">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <div class="section-tag" style="justify-content:center"><span>∞</span> What We Do</div>
+      <h2 class="section-title">Services Built for Scale</h2>
+      <p class="section-sub" style="margin:0 auto">From idea to deployment — we handle every layer of your digital
+        product.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(0,212,255,.1)">🌐</div>
+        <div class="service-name">Web Development</div>
+        <div class="service-desc">Full-stack React, Next.js & Node.js applications. Scalable, fast, and pixel-perfect.
+        </div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(124,58,237,.1)">📱</div>
+        <div class="service-name">Mobile Apps</div>
+        <div class="service-desc">Cross-platform iOS & Android with React Native and Flutter. Native feel, single
+          codebase.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(6,255,165,.1)">☁️</div>
+        <div class="service-name">Cloud & DevOps</div>
+        <div class="service-desc">AWS, Azure & GCP infrastructure. CI/CD, Docker, Kubernetes for enterprise-grade
+          uptime.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(251,191,36,.1)">🤖</div>
+        <div class="service-name">AI & Machine Learning</div>
+        <div class="service-desc">Custom AI models, LLM integrations & predictive analytics for intelligent automation.
+        </div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(239,68,68,.1)">🛡️</div>
+        <div class="service-name">Cybersecurity</div>
+        <div class="service-desc">Pen testing, audits, and compliance — protecting your digital assets 24/7.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card reveal" onclick="location.href='services.html'">
+        <div class="service-icon" style="background:rgba(59,130,246,.1)">📊</div>
+        <div class="service-name">Data & Analytics</div>
+        <div class="service-desc">BI dashboards, data pipelines and real-time analytics to turn data into decisions.
+        </div>
+        <div class="service-arrow">→</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <a href="services.html" class="btn-ghost">Explore All Services →</a>
+    </div>
+  </section>
+
+  <!-- INFINITY DIVIDER -->
+  <div class="infinity-divider reveal"><svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S10 33 10 25z" stroke="#00d4ff" stroke-width="2" />
+      <path d="M62 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S62 33 62 25z" stroke="#00d4ff" stroke-width="2" />
+      <path d="M24 25h52" stroke="#00d4ff" stroke-width="2" />
+    </svg></div>
+
+  <!-- WHY US -->
+  <section id="why" class="section-infinity">
+    <div class="infinity-bg">∞</div>
+    <div class="why-inner">
+      <div class="why-visual reveal">
+        <img class="why-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80"
+          alt="Team collaboration" />
+        <div class="why-img-overlay"></div>
+        <div class="why-card">
+          <div class="num">150+</div>
+          <div class="lbl">Projects shipped</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-tag">Why Code Infinity</div>
+        <h2 class="section-title">Where Infinite<br>Ambition Meets Code</h2>
+        <p class="section-sub">We don't just write code — we engineer outcomes. Every project we take on is driven by a
+          commitment to excellence, speed, and long-term partnership.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15)">🎯</div>
+            <div><strong>Mission-Driven</strong><span>Technology aligned to your business objectives, not the other way
+                around.</span></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon" style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15)">⚡</div>
+            <div><strong>Agile & Transparent</strong><span>Sprint-based delivery with weekly demos. You see progress,
+                always.</span></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon" style="background:rgba(6,255,165,.08);border:1px solid rgba(6,255,165,.15)">♾️</div>
+            <div><strong>Infinite Scalability</strong><span>Systems built to grow from 100 to 10 million users without
+                breaking a sweat.</span></div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.15)">🔒</div>
+            <div><strong>Security First</strong><span>Every product ships with OWASP security standards built-in by
+                default.</span></div>
+          </div>
+        </div>
+        <div style="margin-top:2rem"><a href="about.html" class="btn-ghost">Learn More About Us →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH MARQUEE -->
+  <section style="padding:3rem 0;background:var(--bg2);overflow:hidden;">
+    <div style="text-align:center;margin-bottom:2rem" class="reveal">
+      <div class="section-tag" style="justify-content:center">∞ Our Tech Stack</div>
+    </div>
+    <div class="marquee-wrap" style="margin-bottom:1rem">
+      <div class="marquee">
+        <div class="tech-chip">⚛️ React</div>
+        <div class="tech-chip">▲ Next.js</div>
+        <div class="tech-chip">🟢 Node.js</div>
+        <div class="tech-chip">🐍 Python</div>
+        <div class="tech-chip">🦋 Flutter</div>
+        <div class="tech-chip">☁️ AWS</div>
+        <div class="tech-chip">🐳 Docker</div>
+        <div class="tech-chip">☸️ Kubernetes</div>
+        <div class="tech-chip">🔥 Firebase</div>
+        <div class="tech-chip">🍃 MongoDB</div>
+        <div class="tech-chip">🐘 PostgreSQL</div>
+        <div class="tech-chip">⚛️ React</div>
+        <div class="tech-chip">▲ Next.js</div>
+        <div class="tech-chip">🟢 Node.js</div>
+        <div class="tech-chip">🐍 Python</div>
+        <div class="tech-chip">🦋 Flutter</div>
+        <div class="tech-chip">☁️ AWS</div>
+        <div class="tech-chip">🐳 Docker</div>
+        <div class="tech-chip">☸️ Kubernetes</div>
+        <div class="tech-chip">🔥 Firebase</div>
+        <div class="tech-chip">🍃 MongoDB</div>
+        <div class="tech-chip">🐘 PostgreSQL</div>
+      </div>
+    </div>
+    <div class="marquee-wrap">
+      <div class="marquee marquee2">
+        <div class="tech-chip">🤖 TensorFlow</div>
+        <div class="tech-chip">🧠 OpenAI</div>
+        <div class="tech-chip">📱 React Native</div>
+        <div class="tech-chip">🔷 TypeScript</div>
+        <div class="tech-chip">🌊 Tailwind</div>
+        <div class="tech-chip">⚡ GraphQL</div>
+        <div class="tech-chip">🔴 Redis</div>
+        <div class="tech-chip">🔵 Azure</div>
+        <div class="tech-chip">🌐 GCP</div>
+        <div class="tech-chip">🔧 Jenkins</div>
+        <div class="tech-chip">🤖 TensorFlow</div>
+        <div class="tech-chip">🧠 OpenAI</div>
+        <div class="tech-chip">📱 React Native</div>
+        <div class="tech-chip">🔷 TypeScript</div>
+        <div class="tech-chip">🌊 Tailwind</div>
+        <div class="tech-chip">⚡ GraphQL</div>
+        <div class="tech-chip">🔴 Redis</div>
+        <div class="tech-chip">🔵 Azure</div>
+        <div class="tech-chip">🌐 GCP</div>
+        <div class="tech-chip">🔧 Jenkins</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-banner reveal">
+      <h2>Ready to Build <span class="grad">Something Infinite?</span></h2>
+      <p>Let's turn your vision into a product the world remembers. Tell us about your project today.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-primary">Start a Project</a>
+        <a href="work.html" class="btn-ghost">See Our Work →</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+  <script>renderNav(); renderFooter();</script>
+  <script src="js/main.js"></script>
+  <script>
+    // Counter animation
+    const heroObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        document.querySelectorAll('[data-count]').forEach(el => {
+          const t = +el.dataset.count; let s = null;
+          function step(ts) { if (!s) s = ts; const p = Math.min((ts - s) / 1800, 1); el.textContent = Math.round(p * t) + '+'; if (p < 1) requestAnimationFrame(step); }
+          requestAnimationFrame(step);
+        });
+        heroObs.disconnect();
+      }
+    }, { threshold: .3 });
+    heroObs.observe(document.getElementById('hero'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>About — Code Infinity IT Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .story-section {
+      padding: 5rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-infinity {
+      position: absolute;
+      font-family: 'Syne', sans-serif;
+      font-size: 22rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, .04);
+      top: 50%;
+      left: -5rem;
+      transform: translateY(-50%);
+      user-select: none;
+      line-height: 1;
+    }
+
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .story-img-stack {
+      position: relative;
+      height: 500px;
+    }
+
+    .story-img1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 75%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 16px;
+      filter: saturate(.75);
+    }
+
+    .story-img2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 4px solid var(--bg);
+      filter: saturate(.75);
+    }
+
+    .story-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 212, 255, .1), transparent);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .story-stat-pill {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(4, 8, 18, .92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .story-stat-pill .n {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .story-stat-pill .l {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .values-section {
+      background: var(--bg2);
+      padding: 5rem 5%;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, .3);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .value-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .75rem;
+    }
+
+    .value-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      padding: 5rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 3rem auto 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      top: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, var(--accent), rgba(0, 212, 255, .1));
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-side {
+      flex: 1;
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color .3s;
+    }
+
+    .timeline-side:hover {
+      border-color: rgba(0, 212, 255, .3);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      top: 1.5rem;
+      z-index: 2;
+    }
+
+    .timeline-year {
+      font-family: 'Syne', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+
+    .timeline-event {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+
+    .timeline-detail {
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+
+    /* Stats banner */
+    .stats-banner {
+      background: linear-gradient(135deg, rgba(0, 212, 255, .06), rgba(124, 58, 237, .06));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-banner::before {
+      content: '∞';
+      font-family: 'Syne', sans-serif;
+      font-size: 16rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 212, 255, .04);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      line-height: 1;
+    }
+
+    .stat-big .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-big .lbl {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: .05em;
+    }
+
+    @media(max-width:900px) {
+      .story-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 14px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        flex-direction: column;
+        padding-left: 2rem;
+      }
+
+      .timeline-dot {
+        left: 14px;
+      }
+
+      .stats-banner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <canvas id="particles"></canvas>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-glow"></div>
+    <div style="position:relative;z-index:2">
+      <div class="page-hero-tag">∞ Our Story</div>
+      <h1>About <span class="grad">Code Infinity</span></h1>
+      <p>We are a Chennai-born technology company with a global mindset and an infinite appetite for building great
+        products.</p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="story-section">
+    <div class="story-infinity">∞</div>
+    <div class="story-inner">
+      <div class="story-img-stack reveal">
+        <img class="story-img1" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80"
+          alt="Team" />
+        <div class="story-img-overlay"></div>
+        <img class="story-img2" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80"
+          alt="Code" />
+        <div class="story-stat-pill">
+          <div class="n">2026</div>
+          <div class="l">Founded in Chennai</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">Born in Chennai,<br>Built for the World</h2>
+        <p style="color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:1.5rem">Code Infinity IT Solutions
+          was founded in 2026 by Manikandan, with a vision to build world-class digital products right from Tamil Nadu.
+          What started as a small team of passionate developers has grown into a full-spectrum technology company
+          trusted by clients across India and internationally.</p>
+        <p style="color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:1.5rem">The name "Code Infinity"
+          reflects our core belief — that the possibilities of technology are truly infinite. Every challenge has a
+          solution. Every idea can be built. Every business can be transformed through the right application of
+          technology.</p>
+        <p style="color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:2rem">Today, we are a team of 12+
+          engineers, designers, and strategists delivering exceptional digital experiences across web, mobile, cloud,
+          and AI.</p>
+        <a href="team.html" class="btn-primary">Meet The Team →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section style="padding:3rem 5%;">
+    <div class="stats-banner reveal">
+      <div class="stat-big">
+        <div class="num">150+</div>
+        <div class="lbl">PROJECTS DELIVERED</div>
+      </div>
+      <div class="stat-big">
+        <div class="num">80+</div>
+        <div class="lbl">HAPPY CLIENTS</div>
+      </div>
+      <div class="stat-big">
+        <div class="num">12+</div>
+        <div class="lbl">TEAM MEMBERS</div>
+      </div>
+      <div class="stat-big">
+        <div class="num">5★</div>
+        <div class="lbl">CLIENT RATING</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <div class="values-section">
+    <div style="text-align:center;margin-bottom:1rem" class="reveal">
+      <div class="section-tag" style="justify-content:center">∞ What We Stand For</div>
+      <h2 class="section-title">Our Core Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="value-icon">♾️</span>
+        <div class="value-name">Infinite Thinking</div>
+        <div class="value-desc">We never accept "good enough." Every project pushes us to explore infinite possibilities
+          and deliver beyond expectations.</div>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🎯</span>
+        <div class="value-name">Outcome First</div>
+        <div class="value-desc">Features don't matter. Results do. Every decision we make is tied directly to measurable
+          business outcomes for our clients.</div>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🤝</span>
+        <div class="value-name">True Partnership</div>
+        <div class="value-desc">We don't take orders — we collaborate. Your success is our success, and we're invested
+          in your long-term growth.</div>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🔒</span>
+        <div class="value-name">Security by Default</div>
+        <div class="value-desc">Security isn't an afterthought — it's baked into every line of code, every architecture
+          decision, every deployment.</div>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">⚡</span>
+        <div class="value-name">Speed with Quality</div>
+        <div class="value-desc">Fast delivery doesn't mean cutting corners. We've mastered the art of moving quickly
+          without breaking things.</div>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🌱</span>
+        <div class="value-name">Continuous Growth</div>
+        <div class="value-desc">Technology evolves infinitely and so do we. Our team never stops learning, improving,
+          and mastering new skills.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section">
+    <div class="infinity-divider reveal"><svg viewBox="0 0 100 50" fill="none">
+        <path d="M10 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S10 33 10 25z" stroke="#00d4ff" stroke-width="1.5" />
+        <path d="M62 25c0-8 6-14 14-14s14 6 14 14-6 14-14 14S62 33 62 25z" stroke="#00d4ff" stroke-width="1.5" />
+        <path d="M24 25h52" stroke="#00d4ff" stroke-width="1.5" />
+      </svg></div>
+    <div style="text-align:center;margin-bottom:1rem" class="reveal">
+      <div class="section-tag" style="justify-content:center">∞ Our Journey</div>
+      <h2 class="section-title">The Code Infinity Timeline</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-event">Founded in Chennai</div>
+          <div class="timeline-detail">Manikandan founded Code Infinity with a team of 3 developers and a bold mission
+            to build world-class software from Tamil Nadu.</div>
+        </div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-event">First 10 Clients</div>
+          <div class="timeline-detail">Despite the pandemic, we onboarded our first 10 clients and delivered 15
+            successful projects. Remote-first became our strength.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2027</div>
+          <div class="timeline-event">AI & Cloud Practice Launch</div>
+          <div class="timeline-detail">We expanded into AI/ML and cloud infrastructure, hiring specialists and
+            delivering our first enterprise AI project.</div>
+        </div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2028</div>
+          <div class="timeline-event">Team of 10+</div>
+          <div class="timeline-detail">Grew to a team of 10+ specialists across web, mobile, cloud, AI, security and
+            design. Moved to our Chennai office.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2029</div>
+          <div class="timeline-event">100 Projects Milestone</div>
+          <div class="timeline-detail">Celebrated delivering 100+ projects and earning a 5-star client satisfaction
+            rating across all major platforms.</div>
+        </div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+        <div class="timeline-side">
+          <div class="timeline-year">2030</div>
+          <div class="timeline-event">150+ Projects & Growing ∞</div>
+          <div class="timeline-detail">Expanded services, launched the AI division, and set our sights on becoming South
+            India's most trusted IT solutions partner.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="text-align:center;padding:4rem 5%;">
+    <div class="reveal">
+      <div class="section-tag" style="justify-content:center">∞ Ready?</div>
+      <h2 class="section-title">Let's Write the Next<br>Chapter Together</h2>
+      <p class="section-sub" style="margin:0 auto 2rem">Your idea deserves infinite potential. Let's build it.</p>
+      <a href="contact.html" class="btn-primary">Start a Project</a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+  <script>renderNav(); renderFooter();</script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
